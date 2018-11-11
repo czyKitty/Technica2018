@@ -23,6 +23,7 @@ define time = 0
 define company = ""
 define detective = ""
 define city = ""
+define help_people = 0
 # define characters
 define player = Character("Anonymous")
 define earthRep = Character("Earthquake Non-Profit Representative")
@@ -53,7 +54,7 @@ label start:
     # start
     scene bg sky
 
-    "Hey [player], Congratulations on graduating from college. You really put a lot of hard work into finishing your degree, and it’s paid off – you have your pick of several different jobs.And now that you’re out of school, you have to commit to one of them."
+    "Hey [player], congratulations on graduating from college. You really put a lot of hard work into finishing your degree, and it’s paid off – you have your pick of several different jobs. And now that you’re out of school, you have to commit to one of them."
     "There’s that job at {b}Spectra Tech{/b}, which definitely pays the best, and it looks fun! But you’d have to move to the city, which is pretty far from your family, and rent there is expensive."
     "{b}Gold Star Development{/b}  is closer, so you wouldn’t have to move. The two hour drive is a bit much for every morning, but you could make it work. Rent here is very reasonable, and you’d hate to give that up. The pay is still good, though not as good as Spectra Tech."
     "{b}Green Valley Engineering{/b} is even closer to home – like a fifteen minute drive from your apartment! – and the hours looked better too. Sure it pays less than the other two companies, but you’d have more free time to pursue other interests."
@@ -95,30 +96,41 @@ label start:
         while num_event > 0:
             $ event = renpy.random.randint(0, 100)
             if event < 10:
-                call earthquake
+                call earthquake from _call_earthquake
             elif event < 35:
-                call wildlife
+                call wildlife from _call_wildlife
             elif event < 40:
-                call suggestion
+                call suggestion from _call_suggestion
             elif event < 45:
-                call eatout
+                call eatout from _call_eatout
             elif event < 50:
-                call sibling
+                call sibling from _call_sibling
             elif event < 60:
-                call lottery
+                call lottery from _call_lottery
             elif event < 70:
-                call workextra
+                call workextra from _call_workextra
             elif event < 80:
-                call mugging
+                call mugging from _call_mugging
             elif event < 90:
-                call suggestion
+                call suggestion from _call_suggestion_1
             else:
-                call knockdoor
+                call knockdoor from _call_knockdoor
             show bg black
             $ num_event -= 1
 
-
         "Month end"
+        if help_people > 1:
+            "Your donation for earthquake was being use for reconstruction and help many people to suffer through."
+            $ effort += 10
+        if money < 0:
+            "You do not have enough money in your account! You should pay more attention to your financial management."
+            jump lose
+        if effort < 0:
+            "You are not socially engaged enough! You should pay more attention to your social engagement."
+            jump lose
+        if happiness < 0:
+            "Your mental health is unstable. You should pay more attention to care about yourself."
+            jump lose
         if total_month > 0 :
             jump month_start
         else:
@@ -142,9 +154,10 @@ label start:
                     return
                 else:
                     $money -= 100
+                    $ help_people += 1
                     return
             "Volunteer to do repairs for 1 day.":
-                if $time - 1 < 0:
+                if time - 1 < 0:
                     "You run out of time."
                 else:
                     $time -= 1
@@ -262,5 +275,10 @@ label start:
             show text "You’ve worked hard at your job and for your community, but you’re feeling burnt out. All this work and you haven’t taken time for yourself. If you try to keep going at this rate you’re going to have trouble getting any work done at all." at truecenter
         else:
             show text "Middle class, fairly happy with your life, trying to do the best you can in this messed up world. You’re the picture of an average American. Maybe you could do better than average, but you’re not doing bad, so you might as well just keep on keeping on." at truecenter
-        pase 10.0
+        pause 10.0
+
+    # lose
+    label lose:
+        show text "GAME ENDS." at truecenter
+        pause 10.0
 return

@@ -1,34 +1,58 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/script.rpy", line 95, in script call
-    call wildlife
-  File "game/script.rpy", line 154, in script
-    wildRep " [In the arms of an Angel plays] Hello watchers. My name is Flora and I would like you to see what we are doing to these innocent creatures..."
-KeyError: u'In the arms of an Angel plays'
+After initialization, but before game start.
+  File "game/screens.rpy", line 97, in prepare_screen
+    screen schedule(money,happiness,effort,salary,social_good,time):
+  File "game/screens.rpy", line 97, in prepare
+    screen schedule(money,happiness,effort,salary,social_good,time):
+  File "game/screens.rpy", line 124, in prepare
+    imagemap:
+  File "game/screens.rpy", line 124, in prepare
+    imagemap:
+  File "game/screens.rpy", line 189, in prepare
+    if cur_time < 0:
+  File "game/screens.rpy", line 191, in prepare
+    else:
+  File "game/screens.rpy", line 195, in prepare
+    hotspot (530, 638, 206, 59) clicked [SetVariable("money",cur_money), SetVariable("effort",cur_effort), SetVariable("happiness",cur_happiness),SetVariable("time",cur_time) Return()]
+  File "game/screens.rpy", line 195, in prepare
+    hotspot (530, 638, 206, 59) clicked [SetVariable("money",cur_money), SetVariable("effort",cur_effort), SetVariable("happiness",cur_happiness),SetVariable("time",cur_time) Return()]
+SyntaxError: invalid syntax (screens.rpy, line 195)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 95, in script call
-    call wildlife
-  File "game/script.rpy", line 154, in script
-    wildRep " [In the arms of an Angel plays] Hello watchers. My name is Flora and I would like you to see what we are doing to these innocent creatures..."
-  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/ast.py", line 643, in execute
-    renpy.exports.say(who, what, interact=self.interact, *args, **kwargs)
-  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/exports.py", line 1175, in say
-    who(what, *args, **kwargs)
-  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/character.py", line 1000, in __call__
-    what = what_pattern.replace("[what]", sub(what, translate=translate))
-  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/character.py", line 982, in sub
-    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
-  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/substitutions.py", line 242, in substitute
-    s = formatter.vformat(s, (), kwargs)
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 563, in vformat
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 585, in _vformat
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 646, in get_field
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 605, in get_value
-KeyError: u'In the arms of an Angel plays'
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/bootstrap.py", line 306, in bootstrap
+    renpy.main.main()
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/main.py", line 520, in main
+    run(restart)
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/main.py", line 90, in run
+    renpy.display.screen.prepare_screens()
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/display/screen.py", line 873, in prepare_screens
+    s.ast.prepare_screen()
+  File "game/screens.rpy", line 97, in prepare_screen
+    screen schedule(money,happiness,effort,salary,social_good,time):
+  File "game/screens.rpy", line 97, in prepare
+    screen schedule(money,happiness,effort,salary,social_good,time):
+  File "game/screens.rpy", line 124, in prepare
+    imagemap:
+  File "game/screens.rpy", line 124, in prepare
+    imagemap:
+  File "game/screens.rpy", line 189, in prepare
+    if cur_time < 0:
+  File "game/screens.rpy", line 191, in prepare
+    else:
+  File "game/screens.rpy", line 195, in prepare
+    hotspot (530, 638, 206, 59) clicked [SetVariable("money",cur_money), SetVariable("effort",cur_effort), SetVariable("happiness",cur_happiness),SetVariable("time",cur_time) Return()]
+  File "game/screens.rpy", line 195, in prepare
+    hotspot (530, 638, 206, 59) clicked [SetVariable("money",cur_money), SetVariable("effort",cur_effort), SetVariable("happiness",cur_happiness),SetVariable("time",cur_time) Return()]
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/pyanalysis.py", line 699, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/pyanalysis.py", line 683, in ast_eval_literal
+    expr = py_compile(expr, 'eval', ast_node=True)
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/python.py", line 630, in py_compile
+    raise e
+SyntaxError: invalid syntax (screens.rpy, line 195)
 
 Darwin-18.0.0-x86_64-i386-64bit
 Ren'Py 6.99.14.3135

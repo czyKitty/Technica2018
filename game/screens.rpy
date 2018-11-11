@@ -98,6 +98,7 @@ screen schedule(money,happiness,effort,salary,social_good,time):
     default cur_money = money
     default cur_happiness = happiness
     default cur_effort = effort
+    default cur_time = time
     
     default work_t = 0
     default work_h = 0
@@ -122,32 +123,37 @@ screen schedule(money,happiness,effort,salary,social_good,time):
     
     imagemap:
         ground "schedule.png"
-        hotspot (449, 227, 46, 40) clicked [SetScreenVariable("work_t", work_t+1), SetScreenVariable("work_m", work_m+salary), SetScreenVariable("work_h", work_h-10), SetScreenVariable("work_e", work_e+social_good), SetScreenVariable("time", time-1), SetScreenVariable("cur_money", cur_money+salary), SetScreenVariable("cur_happiness", cur_happiness-10), SetScreenVariable("cur_effort", cur_effort+social_good)]
+        if cur_time > 0:
+            hotspot (449, 227, 46, 40) clicked [SetScreenVariable("work_t", work_t+1), SetScreenVariable("work_m", work_m+salary), SetScreenVariable("work_h", work_h-10), SetScreenVariable("work_e", work_e+social_good), SetScreenVariable("cur_time", cur_time-1), SetScreenVariable("cur_money", cur_money+salary), SetScreenVariable("cur_happiness", cur_happiness-10), SetScreenVariable("cur_effort", cur_effort+social_good)]
         if work_t > 0:
-            hotspot (297, 222, 48, 50) clicked [SetScreenVariable("work_t", work_t-1), SetScreenVariable("work_m", work_m-salary), SetScreenVariable("work_h", work_h+10), SetScreenVariable("work_e", work_e-social_good), SetScreenVariable("time", time+1), SetScreenVariable("cur_money", cur_money-salary), SetScreenVariable("cur_happiness", cur_happiness+10), SetScreenVariable("cur_effort", cur_effort-social_good)]
-        
-        hotspot (450, 308, 43, 42) clicked [SetScreenVariable("v_t", v_t+1), SetScreenVariable("v_h", v_h+50), SetScreenVariable("time", time-1), SetScreenVariable("v_e", v_e+100), SetScreenVariable("cur_happiness", cur_happiness+50), SetScreenVariable("cur_effort", cur_effort+100)]
+            hotspot (297, 222, 48, 50) clicked [SetScreenVariable("work_t", work_t-1), SetScreenVariable("work_m", work_m-salary), SetScreenVariable("work_h", work_h+10), SetScreenVariable("work_e", work_e-social_good), SetScreenVariable("cur_time", cur_time+1), SetScreenVariable("cur_money", cur_money-salary), SetScreenVariable("cur_happiness", cur_happiness+10), SetScreenVariable("cur_effort", cur_effort-social_good)]
+    
+        if cur_time > 0:
+            hotspot (450, 308, 43, 42) clicked [SetScreenVariable("v_t", v_t+1), SetScreenVariable("v_h", v_h+50), SetScreenVariable("cur_time", cur_time-1), SetScreenVariable("v_e", v_e+100), SetScreenVariable("cur_happiness", cur_happiness+50), SetScreenVariable("cur_effort", cur_effort+100)]
         if v_t > 0:
-            hotspot (297, 306, 49, 49) clicked [SetScreenVariable("v_t", v_t-1), SetScreenVariable("v_h", v_h-50), SetScreenVariable("time", time+1), SetScreenVariable("v_e", v_e-100), SetScreenVariable("cur_happiness", cur_happiness-50), SetScreenVariable("cur_effort", cur_effort-100)]
-        
-        hotspot (449, 387, 43, 45) clicked [SetScreenVariable("entertain_t", entertain_t+1), SetScreenVariable("entertain_h", entertain_h+50), SetScreenVariable("time", time-1), SetScreenVariable("cur_happiness", cur_happiness+50)]
+            hotspot (297, 306, 49, 49) clicked [SetScreenVariable("v_t", v_t-1), SetScreenVariable("v_h", v_h-50), SetScreenVariable("cur_time", cur_time+1), SetScreenVariable("v_e", v_e-100), SetScreenVariable("cur_happiness", cur_happiness-50), SetScreenVariable("cur_effort", cur_effort-100)]
+
+        if cur_time > 0:
+            hotspot (449, 387, 43, 45) clicked [SetScreenVariable("entertain_t", entertain_t+1), SetScreenVariable("entertain_h", entertain_h+50), SetScreenVariable("cur_time", cur_time-1), SetScreenVariable("cur_happiness", cur_happiness+50)]
         if entertain_t > 0:
-            hotspot (297, 386, 48, 46) clicked [SetScreenVariable("entertain_t", entertain_t-1), SetScreenVariable("entertain_h", entertain_h-50), SetScreenVariable("time", time+1), SetScreenVariable("cur_happiness", cur_happiness-50)]
-        
-        hotspot (449, 463, 44, 46) clicked [SetScreenVariable("travel_t", travel_t+1), SetScreenVariable("travel_h",travel_h+100), SetScreenVariable("travel_m",travel_m-300), SetScreenVariable("time", time-1), SetScreenVariable("cur_money", cur_money-300), SetScreenVariable("cur_happiness", cur_happiness+100)]
+            hotspot (297, 386, 48, 46) clicked [SetScreenVariable("entertain_t", entertain_t-1), SetScreenVariable("entertain_h", entertain_h-50), SetScreenVariable("cur_time", cur_time+1), SetScreenVariable("cur_happiness", cur_happiness-50)]
+
+        if cur_time > 0:
+            hotspot (449, 463, 44, 46) clicked [SetScreenVariable("travel_t", travel_t+1), SetScreenVariable("travel_h",travel_h+100), SetScreenVariable("travel_m",travel_m-300), SetScreenVariable("cur_time", cur_time-1), SetScreenVariable("cur_money", cur_money-300), SetScreenVariable("cur_happiness", cur_happiness+100)]
         if travel_t > 0:
-            hotspot (299, 466, 47, 43) clicked [SetScreenVariable("travel_t", travel_t-1), SetScreenVariable("travel_h",travel_h-100), SetScreenVariable("travel_m",travel_m+300), SetScreenVariable("time", time+1), SetScreenVariable("cur_money", cur_money+300), SetScreenVariable("cur_happiness", cur_happiness-100)]
-        
-        hotspot (448, 543, 45, 50) clicked [SetScreenVariable("net_t", net_t+1), SetScreenVariable("net_h",net_h+10), SetScreenVariable("net_m",net_m+10),SetScreenVariable("net_e", net_e+10), SetScreenVariable("time", time-1), SetScreenVariable("cur_money", cur_money+10), SetScreenVariable("cur_happiness", cur_happiness+10),SetScreenVariable("cur_effort", cur_effort+10)]
+            hotspot (299, 466, 47, 43) clicked [SetScreenVariable("travel_t", travel_t-1), SetScreenVariable("travel_h",travel_h-100), SetScreenVariable("travel_m",travel_m+300), SetScreenVariable("cur_time", cur_time+1), SetScreenVariable("cur_money", cur_money+300), SetScreenVariable("cur_happiness", cur_happiness-100)]
+
+        if cur_time > 0:
+            hotspot (448, 543, 45, 50) clicked [SetScreenVariable("net_t", net_t+1), SetScreenVariable("net_h",net_h+10), SetScreenVariable("net_m",net_m+10),SetScreenVariable("net_e", net_e+10), SetScreenVariable("cur_time", cur_time-1), SetScreenVariable("cur_money", cur_money+10), SetScreenVariable("cur_happiness", cur_happiness+10),SetScreenVariable("cur_effort", cur_effort+10)]
         if net_t > 0:
-            hotspot (297, 546, 46, 47) clicked [SetScreenVariable("net_t", net_t-1), SetScreenVariable("net_h",net_h-10), SetScreenVariable("net_m",net_m-10),SetScreenVariable("net_e", net_e-10), SetScreenVariable("time", time+1), SetScreenVariable("cur_money", cur_money-10), SetScreenVariable("cur_happiness", cur_happiness-10),SetScreenVariable("cur_effort", cur_effort-10)]
+            hotspot (297, 546, 46, 47) clicked [SetScreenVariable("net_t", net_t-1), SetScreenVariable("net_h",net_h-10), SetScreenVariable("net_m",net_m-10),SetScreenVariable("net_e", net_e-10), SetScreenVariable("cur_time", cur_time+1), SetScreenVariable("cur_money", cur_money-10), SetScreenVariable("cur_happiness", cur_happiness-10),SetScreenVariable("cur_effort", cur_effort-10)]
     #default work_m = 0
     #add "schedule.png"
         text str(cur_money) xpos 1062 ypos 54
         text str(cur_effort) xpos 776 ypos 54
         text str(cur_happiness) xpos 499 ypos 54
 
-        text str(time) xpos 130 ypos 54
+        text str(cur_time) xpos 130 ypos 54
             
         text str(work_t) xpos 362 ypos 237
         text str(work_h) xpos 680 ypos 237
@@ -180,11 +186,13 @@ screen schedule(money,happiness,effort,salary,social_good,time):
             text "{b}{color=#ff0000}{size=+20}Your mental stage is in danger!{/size}{/color}{/b}" xpos 450 ypos 400
         if cur_effort < 0:
             text "{b}{color=#ff0000}{size=+20}Your need to be socially involved!{/size}{/color}{/b}" xpos 450 ypos 400
+        if cur_time < 0:
+            text "{b}{color=#ff0000}{size=+20}Your don't have enough time!{/size}{/color}{/b}" xpos 450 ypos 400
         else:
             #$ money = cur_money
             #$ effort = cur_effort
             #$ happiness = cur_happiness
-            hotspot (530, 638, 206, 59) clicked [SetVariable("money",cur_money), SetVariable("effort",cur_effort), SetVariable("happiness",cur_happiness), Return()]
+            hotspot (530, 638, 206, 59) clicked [SetVariable("money",cur_money), SetVariable("effort",cur_effort), SetVariable("happiness",cur_happiness),SetVariable("time",cur_time),Return()]
 
 ## Say screen ##################################################################
 ##

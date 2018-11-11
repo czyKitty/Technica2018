@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 38: invalid syntax
-    renpy.notify(Name your character)
-                          ^
-    
+File "game/script.rpy", line 265: expected statement.
+    pase 10.0
+           ^
 
 Ren'Py Version: Ren'Py 6.99.14.3135
