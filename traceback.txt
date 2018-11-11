@@ -1,0 +1,35 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 95, in script call
+    call wildlife
+  File "game/script.rpy", line 154, in script
+    wildRep " [In the arms of an Angel plays] Hello watchers. My name is Flora and I would like you to see what we are doing to these innocent creatures..."
+KeyError: u'In the arms of an Angel plays'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 95, in script call
+    call wildlife
+  File "game/script.rpy", line 154, in script
+    wildRep " [In the arms of an Angel plays] Hello watchers. My name is Flora and I would like you to see what we are doing to these innocent creatures..."
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/ast.py", line 643, in execute
+    renpy.exports.say(who, what, interact=self.interact, *args, **kwargs)
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/exports.py", line 1175, in say
+    who(what, *args, **kwargs)
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/character.py", line 1000, in __call__
+    what = what_pattern.replace("[what]", sub(what, translate=translate))
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/character.py", line 982, in sub
+    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
+  File "/Users/Kitty/Desktop/AVG/renpy-<version>/renpy/substitutions.py", line 242, in substitute
+    s = formatter.vformat(s, (), kwargs)
+  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 563, in vformat
+  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 585, in _vformat
+  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 646, in get_field
+  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 605, in get_value
+KeyError: u'In the arms of an Angel plays'
+
+Darwin-18.0.0-x86_64-i386-64bit
+Ren'Py 6.99.14.3135
+TECHNICA2018 1.0
